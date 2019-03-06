@@ -1,0 +1,47 @@
+from vk_api.longpoll import VkLongPoll, VkEventType 
+import vk_api 
+import random 
+
+
+token = "20b8d14c90fbd1f1cbface21085c4f591b00c33661a16f7b62a69e596fd4837f6d3a2f19918ff7ef62e1f" 
+vk_session = vk_api.VkApi(token=token) 
+
+session_api = vk_session.get_api() 
+longpoll = VkLongPoll (vk_session) 
+
+session_api = vk_session.get_api() 
+longpoll = VkLongPoll(vk_session) 
+random_id = random 
+while True: 
+for event in longpoll.listen(): 
+if event.type == VkEventType.MESSAGE_NEW: 
+print('Текст сообщения: ' + str(event.text)) 
+print(event.user_id) 
+print(event.chat_id) 
+response = event.text.lower() 
+chat_id = event.chat_id 
+if event.from_user and not (event.from_me): 
+if response == "привет": 
+vk_session.method('messages.send', {'user_id': event.user_id, 'message': 'Привет', 'random_id': 0}) 
+elif response == "как дела" or response == "как дела?": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'хорошо, а у тебя?', 'random_id': 0}) 
+elif response == "не очень" or response == "плохо" or response == "хуево": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'почему?', 'random_id': 0}) 
+elif response == "хорошо" or response == "заебись" or response == "норм" or response == "прекрасно" or response == "отлично" or response == "нормально": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'рад за тебя', 'random_id': 0})
+ 
+if event.from_user and not (event.from_me): 
+if response == "привет": 
+vk_session.method('messages.send', {'user_id': event.user_id, 'message': 'Привет', 'random_id': 0}) 
+elif response == "как дела" or response == "как дела?": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'хорошо, а у тебя?', 'random_id': 0}) 
+elif response == "не очень" or response == "плохо" or response == "хуево": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'почему?', 'random_id': 0}) 
+elif response == "хорошо" or response == "заебись" or response == "норм" or response == "прекрасно" or response == "отлично" or response == "нормально": 
+vk_session.method('messages.send', 
+{'user_id': event.user_id, 'message': 'рад за тебя', 'random_id': 0}))
